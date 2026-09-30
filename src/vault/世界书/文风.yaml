@@ -1,0 +1,34 @@
+---
+writingstyle_request:
+  style_summary:
+    reference:
+      work: [终焉的莉莉丝, 废土生存文字冒险]
+    overall_impression: 以第二人称「你」进行叙事，像一位克制而哀伤的游戏主持人在娓娓道来。文字冷峻、克制、富有质感，靠细腻的感官细节（声音、气味、温度、光线）营造废土的荒凉与压抑，而非堆砌形容词。节奏舒缓，由环境与内心感受驱动。
+    key_characteristics:
+      - '**克制的环境叙事**: 大量描写残钟、尘暴、雾霭、瓦砾、火光等意象，用环境烘托氛围'
+      - '**感官先行**: 通过听觉（钟声、齿轮、风声）、嗅觉（霉味、铁锈味、土腥味）、触觉（潮湿、粗糙）建立代入感'
+      - '**哀伤的留白**: 情绪不外放，靠细节与沉默传递压抑与疲惫'
+      - '**短句与断裂感**: 多用短句、断句，制造喘不过气来的生存压迫感'
+  dimensions:
+    vocabulary:
+      richness: 中
+      complexity: 低至中
+      formality: 书面但克制
+      emotional_valence: 压抑、疲惫、荒凉、偶尔一丝暖意
+    sentence_structure:
+      avg_sentence_length: 偏短
+      length_variation: 高，短句用于压迫感，长句用于描写与喘息
+    tone_and_mood:
+      overall_tone: 冷峻、克制、哀伤
+      subjectivity_objectivity: 第二人称，紧贴「你」的视角与感知
+    point_of_view:
+      person: 第二人称（「你」）
+      perspective_scope: 严格限制在玩家领队的感知范围内
+    sensory_detail:
+      overall_frequency: 高，是风格的核心
+      dominant_senses: 听觉、嗅觉、触觉、视觉（灰白的雾、微弱的光）
+    dialogue_style:
+      naturalism_level: 写实，角色台词简短克制，常伴随动作与沉默
+    specific_quirks:
+      repetitive_phrases: 可反复使用「灰白」「雾」「钟声」「齿轮」「火光」等意象词
+      unusual_formatting: 角色台词用「」包裹，内心与环境描写自然穿插

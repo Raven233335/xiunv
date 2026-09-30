@@ -1,0 +1,366 @@
+/* 灰烬挽歌 · 设计令牌与共享样式（终焉的莉莉丝 × 玻璃拟态） */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg: #0b0d12;
+  --bg-2: #10131b;
+  --bg-3: #151927;
+  --bone: #e6e2d8;
+  --ash: #c9c5bd;
+  --ash-dim: #9a97a6;
+  --ash-faint: #6c6a7a;
+  --ice: #8fb3c9;
+  --gold: #d4a860;
+  --gold-soft: #e9cd94;
+  --crimson: #b05662;
+  --crimson-deep: #8c3a44;
+  --violet: #9c78c0;
+  --violet-deep: #7d5a9c;
+  --life: #7fb0a0;
+  --line: rgba(230, 226, 216, 0.08);
+  --line-strong: rgba(230, 226, 216, 0.16);
+  --line-bright: rgba(230, 226, 216, 0.28);
+  --glass: rgba(18, 22, 32, 0.55);
+  --glass-hover: rgba(30, 36, 52, 0.6);
+  --font-serif: 'Noto Serif SC', 'STSong', 'SimSun', serif;
+  --font-sans: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  --font-display: 'Cinzel', 'Times New Roman', serif;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  background:
+    radial-gradient(900px 600px at 80% -10%, rgba(124, 90, 156, 0.12), transparent 60%),
+    radial-gradient(800px 600px at -10% 110%, rgba(143, 179, 201, 0.12), transparent 55%),
+    linear-gradient(160deg, #0d1017 0%, #0b0d12 45%, #0a0c10 100%);
+  color: var(--bone);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 共享：图标 */
+.icon {
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  color: inherit;
+}
+.icon svg {
+  width: 15px;
+  height: 15px;
+  display: block;
+}
+
+/* 共享：数值条 */
+.bar {
+  position: relative;
+  height: 7px;
+  border-radius: 999px;
+  background: rgba(230, 226, 216, 0.08);
+  overflow: hidden;
+}
+.bar-fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  border-radius: 999px;
+  transition: width 0.8s cubic-bezier(0.22, 0.9, 0.34, 1);
+}
+.bar-fill.life {
+  background: linear-gradient(90deg, #5a8a7a, var(--life));
+  box-shadow: 0 0 10px rgba(127, 176, 160, 0.4);
+}
+.bar-fill.pressure {
+  background: linear-gradient(90deg, #b98a43, var(--gold));
+  box-shadow: 0 0 10px rgba(212, 168, 96, 0.4);
+}
+.bar-fill.violet {
+  background: linear-gradient(90deg, #6f4f92, var(--violet));
+  box-shadow: 0 0 10px rgba(156, 120, 192, 0.4);
+}
+.bar-fill.crimson {
+  background: linear-gradient(90deg, #7d333d, var(--crimson));
+  box-shadow: 0 0 10px rgba(176, 86, 98, 0.4);
+}
+.bar-fill.ice {
+  background: linear-gradient(90deg, #6a8da4, var(--ice));
+  box-shadow: 0 0 10px rgba(143, 179, 201, 0.4);
+}
+
+/* 共享：分段点（浊化 / 机芯 0~5） */
+.pips {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.pip {
+  flex: 1;
+  height: 8px;
+  border-radius: 3px;
+  background: rgba(230, 226, 216, 0.1);
+  transition: all 0.4s cubic-bezier(0.22, 0.9, 0.34, 1);
+}
+.pip.crimson.on {
+  background: linear-gradient(90deg, var(--crimson-deep), var(--crimson));
+  box-shadow: 0 0 8px rgba(176, 86, 98, 0.5);
+}
+.pip.violet.on {
+  background: linear-gradient(90deg, var(--violet-deep), var(--violet));
+  box-shadow: 0 0 8px rgba(156, 120, 192, 0.5);
+}
+.pips-num {
+  font-family: var(--font-display);
+  font-size: 12px;
+  color: var(--ash-dim);
+  min-width: 36px;
+  text-align: right;
+}
+
+/* 共享：头像剪影 */
+.avatar {
+  position: relative;
+  width: 46px;
+  height: 46px;
+  flex: none;
+  border-radius: 50%;
+  overflow: hidden;
+  background: radial-gradient(circle at 50% 30%, color-mix(in srgb, var(--tint) 26%, transparent), transparent 72%);
+  border: 1px solid color-mix(in srgb, var(--tint) 30%, transparent);
+}
+.avatar svg {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 34px;
+  height: 44px;
+  color: color-mix(in srgb, var(--tint) 55%, var(--bone));
+}
+.avatar.xs {
+  width: 40px;
+  height: 40px;
+}
+.avatar.xs svg {
+  width: 28px;
+  height: 36px;
+}
+.avatar.lg {
+  width: 84px;
+  height: 84px;
+}
+.avatar.lg svg {
+  width: 60px;
+  height: 78px;
+}
+
+/* 共享：章节标题 */
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-serif);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ash);
+  letter-spacing: 0.2em;
+}
+.section-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+}
+
+/* 共享：信息格 */
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+.info-cell {
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: rgba(230, 226, 216, 0.02);
+}
+.info-label {
+  font-size: 10px;
+  color: var(--ash-faint);
+  letter-spacing: 0.14em;
+}
+.info-value {
+  font-family: var(--font-serif);
+  font-size: 16px;
+  color: var(--bone);
+  margin-top: 2px;
+}
+
+/* 共享：数值行 */
+.stat-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.stat-row-top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+.stat-row-name {
+  font-size: 12.5px;
+  color: var(--ash);
+  letter-spacing: 0.05em;
+}
+.stat-row-value {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--bone);
+}
+.stat-row-value i {
+  font-style: normal;
+  font-size: 10px;
+  color: var(--ash-faint);
+  font-weight: 400;
+  margin-left: 2px;
+}
+
+/* 共享：名单 + 详情 双栏 */
+.split {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+.roster {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.roster-item {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 10px 11px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: rgba(230, 226, 216, 0.02);
+  color: var(--bone);
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s, transform 0.2s;
+}
+.roster-item:hover {
+  border-color: var(--line-bright);
+  background: rgba(230, 226, 216, 0.05);
+}
+.roster-item.is-selected {
+  border-color: rgba(212, 168, 96, 0.45);
+  background: linear-gradient(90deg, rgba(212, 168, 96, 0.12), rgba(212, 168, 96, 0.02));
+}
+.roster-main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+.roster-name {
+  font-family: var(--font-serif);
+  font-size: 14px;
+  color: var(--bone);
+  letter-spacing: 0.03em;
+}
+.roster-meta {
+  font-size: 10.5px;
+  color: var(--ash-dim);
+}
+.roster-meta .role {
+  color: var(--gold-soft);
+  font-family: var(--font-serif);
+  margin-left: 4px;
+}
+.roster-live {
+  font-size: 10.5px;
+  color: var(--ash-dim);
+  text-align: right;
+  white-space: nowrap;
+}
+.roster-live b {
+  font-family: var(--font-display);
+  color: var(--life);
+}
+.detail {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 4px 2px 4px 8px;
+}
+.detail-hero {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.detail-id {
+  flex: 1;
+  min-width: 0;
+}
+.detail-name {
+  font-family: var(--font-serif);
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+.detail-role {
+  font-family: var(--font-serif);
+  font-size: 12px;
+  color: var(--gold-soft);
+  letter-spacing: 0.12em;
+  margin-top: 2px;
+}
+.stats-list {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+/* ==========================================================================
+   全屏适配：document.documentElement 进入全屏时，让界面占满视口
+   ========================================================================== */
+:root:fullscreen .card {
+  max-width: 100%;
+  padding: 20px;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+:root:fullscreen .mt-body,
+:root:fullscreen .streaming-text {
+  max-height: 58vh;
+}
+
+:root:fullscreen .maintext-panel.opts-open .mt-body {
+  max-height: 36vh;
+}
+
+:root:fullscreen .reading-list {
+  max-height: 74vh;
+}
+
+:root:fullscreen .edit-textarea {
+  height: 58vh;
+}
+
+:root:fullscreen .load-panel,
+:root:fullscreen .edit-panel {
+  width: min(900px, 100%);
+  max-height: 90vh;
+}

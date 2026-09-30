@@ -1,0 +1,257 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "世界": {
+      "default": {},
+      "type": "object",
+      "properties": {
+        "当前日期": {
+          "default": "亚特历 147 年 6 月 12 日",
+          "type": "string"
+        },
+        "当前时间": {
+          "default": "08:30",
+          "type": "string"
+        },
+        "当前地点": {
+          "default": "驻扎地",
+          "type": "string"
+        },
+        "当前淫雾浓度": {
+          "default": 5,
+          "type": "number"
+        }
+      }
+    },
+    "队伍状态": {
+      "default": {},
+      "type": "object",
+      "properties": {
+        "食物量": {
+          "default": 120,
+          "type": "number"
+        },
+        "淫魔精液总存量": {
+          "default": 80,
+          "type": "number"
+        }
+      }
+    },
+    "队伍人员": {
+      "default": {},
+      "type": "object",
+      "propertyNames": {
+        "type": "string",
+        "description": "队员姓名"
+      },
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "年龄": {
+            "default": 30,
+            "type": "number"
+          },
+          "性别": {
+            "default": "男",
+            "type": "string",
+            "enum": [
+              "男",
+              "女"
+            ]
+          },
+          "外貌": {
+            "default": "",
+            "type": "string"
+          },
+          "背景": {
+            "default": "",
+            "type": "string"
+          },
+          "浊化表现": {
+            "default": "",
+            "type": "string"
+          },
+          "压力值": {
+            "default": 0,
+            "type": "number"
+          },
+          "精液存量": {
+            "default": 0,
+            "type": "number"
+          },
+          "生命值": {
+            "default": 100,
+            "type": "number"
+          },
+          "浊化等级": {
+            "default": 0,
+            "type": "number"
+          }
+        }
+      }
+    },
+    "修女": {
+      "default": {},
+      "type": "object",
+      "propertyNames": {
+        "type": "string",
+        "description": "修女姓名"
+      },
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "外貌": {
+            "default": "",
+            "type": "string"
+          },
+          "背景": {
+            "default": "",
+            "type": "string"
+          },
+          "年龄": {
+            "default": 18,
+            "type": "number"
+          },
+          "性别": {
+            "default": "女",
+            "type": "string",
+            "const": "女"
+          },
+          "淫魔精液量": {
+            "default": 0,
+            "type": "number"
+          },
+          "机芯等级": {
+            "default": 1,
+            "type": "number"
+          },
+          "身体耐受值": {
+            "default": 100,
+            "type": "number"
+          },
+          "淫匣": {
+            "default": {
+              "名字": "",
+              "机芯形态": "",
+              "外表描述": ""
+            },
+            "type": "object",
+            "properties": {
+              "名字": {
+                "default": "",
+                "type": "string"
+              },
+              "机芯形态": {
+                "default": "",
+                "type": "string"
+              },
+              "外表描述": {
+                "default": "",
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "招募池": {
+      "default": {},
+      "type": "object",
+      "properties": {
+        "队员": {
+          "default": {},
+          "type": "object",
+          "propertyNames": {
+            "type": "string",
+            "description": "姓名"
+          },
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "外貌": {
+                "default": "",
+                "type": "string"
+              },
+              "背景": {
+                "default": "",
+                "type": "string"
+              },
+              "浊化表现": {
+                "default": "",
+                "type": "string"
+              },
+              "年龄": {
+                "default": 18,
+                "type": "number"
+              },
+              "性别": {
+                "default": "未知",
+                "type": "string"
+              },
+              "浊化等级": {
+                "default": 0,
+                "type": "number"
+              }
+            }
+          }
+        },
+        "修女": {
+          "default": {},
+          "type": "object",
+          "propertyNames": {
+            "type": "string",
+            "description": "姓名"
+          },
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "外貌": {
+                "default": "",
+                "type": "string"
+              },
+              "背景": {
+                "default": "",
+                "type": "string"
+              },
+              "年龄": {
+                "default": 18,
+                "type": "number"
+              },
+              "性别": {
+                "default": "女",
+                "type": "string"
+              },
+              "机芯等级": {
+                "default": 1,
+                "type": "number"
+              },
+              "淫匣": {
+                "default": {
+                  "名字": "",
+                  "机芯形态": "",
+                  "外表描述": ""
+                },
+                "type": "object",
+                "properties": {
+                  "名字": {
+                    "default": "",
+                    "type": "string"
+                  },
+                  "机芯形态": {
+                    "default": "",
+                    "type": "string"
+                  },
+                  "外表描述": {
+                    "default": "",
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
