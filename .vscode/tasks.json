@@ -47,6 +47,7 @@
       ]
     },
     {
+<<<<<<< HEAD
       "label": "启动静态服务器(CORS)",
       "type": "shell",
       "command": "pnpm",
@@ -78,6 +79,8 @@
       }
     },
     {
+=======
+>>>>>>> fbd0c2c5f019bec7ca3a145029527629c529b4b3
       "label": "结束任务",
       "command": "echo ${input:terminate}",
       "type": "shell"
